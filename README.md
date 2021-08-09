@@ -19,4 +19,4 @@ false - kills are assigned merely to killers
 3. Open ```customScripts.lua``` and add this code on separate line: ```require("custom.playerKillCount.main")```
 
 ## Showcase
-[![IMAGE ALT TEXT HERE](https://cdn.discordapp.com/attachments/663977921282834432/874265121092952104/unknown.png)]
+![](https://cdn.discordapp.com/attachments/663977921282834432/874265121092952104/unknown.png)
