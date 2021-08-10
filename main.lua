@@ -1,3 +1,12 @@
+--[[
+=====================================
+| author: Nkfree                    |
+| github: https://github.com/Nkfree |
+=================================================================================================================================
+| requires: namesData.lua that can be downloaded from https://github.com/Nkfree/-TES3MP-resources/blob/main/namesData.lua	|
+=================================================================================================================================
+]]
+
 local namesData = require("custom.namesData")
 
 local config = {}
