@@ -15,7 +15,7 @@ false - kills are assigned merely to killers
 ## Installation
 
 1. Download the ```main.lua``` and put it in */server/scripts/custom/playerKillCount*
-2. Download the ```namesData.lua``` and put it in */server/scripts/custom/*
+2. Download the [```namesData.lua```](https://github.com/Nkfree/-TES3MP-resources/blob/main/namesData.lua) and put it in */server/scripts/custom/*
 3. Open ```customScripts.lua``` and add this code on separate line: ```require("custom.playerKillCount.main")```
 
 ## Showcase
