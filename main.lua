@@ -116,7 +116,7 @@ local function ResetKills(pid, cmd)
 end
 
 local function ToggleCellShared(pid, cmd)
-    if Players[pid].data.settings.staffRank >= 2 then
+    if Players[pid].data.settings.staffRank >= 3 then
         local status = "ON"
 
         if config.cellShared then
@@ -126,7 +126,7 @@ local function ToggleCellShared(pid, cmd)
             config.cellShared = true
         end
 
-        tes3mp.SendMessage(pid, "[playerKillCount] Sharing kills within the cell is now " .. status .. "\n")
+        tes3mp.SendMessage(pid, "[playerKillCount] Sharing kills within the cell is now " .. status .. "\n", true)
     end
 end
 
@@ -135,17 +135,23 @@ local function GuiShowKills(pid, cmd)
     local label = "- Player Kills -\n\n"
     local totalKills = 0
     local items = ""
+    local sorted = {}
 
     for refId, count in pairs(Players[pid].data.kills) do
-        totalKills = totalKills + count
-
-        if namesData[string.lower(refId)] then
-            items = items .. namesData[string.lower(refId)]
+        if namesData[refId] then
+            table.insert(sorted, {name = namesData[string.lower(refId)], count = count})
         else
-            items = items .. string.lower(refId)
+            table.insert(sorted, {name = string.lower(refId), count = count})
         end
+    end
 
-        items = items .. ": " .. count .. "\n"
+    table.sort(sorted, function(a, b)
+        return a.name < b.name
+    end)
+
+    for _, data in ipairs(sorted) do
+        totalKills = totalKills + data.count
+        items = items .. data.name .. ": " .. data.count .. "\n"
     end
 
     label = label .. "Total: " .. totalKills
