@@ -111,7 +111,22 @@ local function ResetKills(pid, cmd)
         -- Load them for player
         LoadKills(pid)
     else
-        tes3mp.SendMessage(pid, "You are not eligible to reset kills.\n", false)
+        tes3mp.SendMessage(pid, "[playerKillCount] You are not eligible to reset kills.\n", false)
+    end
+end
+
+local function ToggleCellShared(pid, cmd)
+    if Players[pid].data.settings.staffRank >= 2 then
+        local status = "ON"
+
+        if config.cellShared then
+            config.cellShared = false
+            status = "OFF"
+        else
+            config.cellShared = true
+        end
+
+        tes3mp.SendMessage(pid, "[playerKillCount] Sharing kills within the cell is now " .. status .. "\n")
     end
 end
 
@@ -145,4 +160,5 @@ customEventHooks.registerValidator("OnWorldKillCount", OnWorldKillCountValidator
 customEventHooks.registerHandler("OnActorDeath", OnActorDeathHandler)
 
 customCommandHooks.registerCommand("resetkills", ResetKills)
+customCommandHooks.registerCommand("togglecellshared", ToggleCellShared)
 customCommandHooks.registerCommand("showkills", GuiShowKills)
